@@ -1,0 +1,27 @@
+{
+  "name": "soa-example-banned-ip-service",
+  "version": "0.0.0",
+  "description": "Banned IP service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dan Bucholtz",
+  "dependencies" :{
+   "connect": "2.14.2",
+        "connect-redis" : "1.4.x",
+        "ejs": "0.8.5",
+        "express": "3.*",
+        "mongoose": "3.8.8",
+        "node-schedule" : "0.1.13",
+        "node-uuid" : "1.4.1",
+        "passport": "*",
+        "passport-local": "*",
+        "q" : "1.0.1",
+        "soa-example-banned-ip-service-api": "git://github.com/danbucholtz/soa-example-banned-ip-service-api",
+        "soa-example-core-service": "git://github.com/danbucholtz/soa-example-core-service",
+        "soa-example-service-config": "git://github.com/danbucholtz/soa-example-service-config",
+        "soa-example-redis-util" : "git://github.com/danbucholtz/soa-example-redis-util",
+        "soa-example-core-utils": "git://github.com/danbucholtz/soa-example-core-utils"
+  }
+}
