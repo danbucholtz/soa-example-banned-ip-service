@@ -7,10 +7,12 @@ var InvalidAuthAttempt = require("../models/InvalidAuthAttempt");
 
 var bannedIpService = require("soa-example-banned-ip-service-api");
 
+var log = require('soa-example-logging-service-api');
+
 var NUM_FAILED_ATTEMPTS_PER_TWENTYFOUR_HOURS = 5;
 
 schedule.scheduleJob("* * * * *", function() {
-	getInvalidAuthAttempts();
+	updateActiveBanList();
 });
 
 var invalidAuthAttempt = function(req, res){
@@ -21,10 +23,13 @@ var invalidAuthAttempt = function(req, res){
 	var password = req.body.password;
 	var accessToken = req.body.accessToken;
 
+	log.debug(req.user.accessToken, "invalidAuthAttempt: User [" + req.user.emailAddress + "] storing failed auth attempt from [" + ipAddress + "] ...");
+
 	// TODO - factor in white list
 
 	if ( type && ipAddress && ((username && password) || accessToken) ){
 		invalidAuthAttemptInternal(type, ipAddress, username, password, accessToken).then(function(entity){
+			log.debug(req.user.accessToken, "invalidAuthAttempt: User [" + req.user.emailAddress + "] storing failed auth attempt from [" + ipAddress + "] ... SUCCESS");
 			res.send({success:(entity != null)});
 		});
 	}
@@ -55,8 +60,7 @@ var invalidAuthAttemptInternal = function(type, ipAddress, username, password, a
 var updateActiveBanList = function(){
 	getInvalidAuthAttempts().then(function(bannedHosts){
 		// store the list of banned hosts in redis
-		var bannedHostJson = JSON.stringify(bannedHosts);
-		redisUtil.put("banned", bannedHostJson);
+		redisUtil.put("banned", bannedHosts);
 	});
 };
 

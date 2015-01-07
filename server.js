@@ -8,4 +8,4 @@ mongoose.connect(config.mongoUri);
 
 var app = service.createApiServer(config.bannedIpServicePort);
 
-app.post('/invalid', invalidAuthAttemptController.invalidAuthAttempt);
+app.post('/invalid', service.ensureAuthenticated, invalidAuthAttemptController.invalidAuthAttempt);

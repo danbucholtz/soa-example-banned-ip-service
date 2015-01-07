@@ -20,8 +20,9 @@
         "q" : "1.0.1",
         "soa-example-banned-ip-service-api": "git://github.com/danbucholtz/soa-example-banned-ip-service-api",
         "soa-example-core-service": "git://github.com/danbucholtz/soa-example-core-service",
-        "soa-example-service-config": "git://github.com/danbucholtz/soa-example-service-config",
+        "soa-example-core-utils": "git://github.com/danbucholtz/soa-example-core-utils",
+        "soa-example-logging-service-api" : "git://github.com/danbucholtz/soa-example-logging-service-api",
         "soa-example-redis-util" : "git://github.com/danbucholtz/soa-example-redis-util",
-        "soa-example-core-utils": "git://github.com/danbucholtz/soa-example-core-utils"
+        "soa-example-service-config": "git://github.com/danbucholtz/soa-example-service-config"
   }
 }
